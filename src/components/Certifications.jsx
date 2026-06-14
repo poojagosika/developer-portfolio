@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FiAward } from "react-icons/fi";
-import { fadeUp, staggerContainer, staggerItem } from "../animations";
+import { tumble, staggerContainer, staggerWipe } from "../animations";
 
 const certs = [
   { title: "Cisco Cybersecurity", issuer: "Cisco", year: "2019" },
@@ -15,12 +15,12 @@ const certs = [
 ];
 
 export default function Certifications() {
-  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.2 });
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
 
   return (
     <section id="certifications" className="py-20" ref={ref}>
       <motion.p
-        variants={fadeUp}
+        variants={tumble}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         className="font-mono text-xs text-text-muted mb-6"
@@ -29,7 +29,7 @@ export default function Certifications() {
       </motion.p>
 
       <motion.div
-        variants={fadeUp}
+        variants={tumble}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         custom={1}
@@ -51,8 +51,13 @@ export default function Certifications() {
         {certs.map((cert) => (
           <motion.div
             key={cert.title}
-            variants={staggerItem}
-            whileHover={{ y: -3, scale: 1.02, transition: { duration: 0.2 } }}
+            variants={staggerWipe}
+            whileHover={{
+              y: -6,
+              scale: 1.04,
+              boxShadow: "0 15px 35px rgba(0,0,0,0.25)",
+              transition: { duration: 0.3 },
+            }}
             className="group rounded-2xl glass-card p-5 text-center transition-colors duration-500"
           >
             <div className="w-12 h-12 rounded-xl bg-white/4 border border-white/4 flex items-center justify-center mx-auto mb-3 group-hover:bg-white/6 transition-colors">

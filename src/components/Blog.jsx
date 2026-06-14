@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FiArrowRight } from "react-icons/fi";
-import { fadeUp } from "../animations";
+import { skate } from "../animations";
 
 const posts = [
   {
@@ -9,7 +9,7 @@ const posts = [
     tag: "AI / EdTech",
     title: "Building InterviewPrepUp: AI-Powered PM Interview Simulator",
     excerpt:
-      "How I built an AI interview platform with follow-up probing, quote-based feedback, and 5-dimension competency scoring based on 3000+ real MAANG interviews...",
+      "AI follow-up probing, quote-based feedback, and 5-dimension competency scoring from 3000+ real MAANG interviews.",
     link: "https://www.interviewprepup.com",
   },
   {
@@ -17,15 +17,14 @@ const posts = [
     tag: "EdTech",
     title: "Shipping Upivot: From Idea to a PM Mentorship Platform",
     excerpt:
-      "The technical journey of building Upivot end-to-end — MERN architecture, AWS infrastructure, and scaling to help 37% of students land PM roles...",
+      "MERN architecture, AWS infrastructure, and scaling to a 37% PM placement rate.",
     link: "https://www.upivot.in",
   },
   {
     date: "Apr 2026",
     tag: "DevOps",
     title: "Setting Up CI/CD Pipelines with GitHub Actions & AWS",
-    excerpt:
-      "A practical guide to automating deployments with GitHub Actions, Docker, and AWS ECS — lessons from deploying Upivot and InterviewPrepUp...",
+    excerpt: "Automating deployments with GitHub Actions, Docker, and AWS ECS.",
     link: "https://app.upivot.in",
   },
   {
@@ -33,7 +32,7 @@ const posts = [
     tag: "YouTube API",
     title: "Building AutoPublish: Auto-Publishing YouTube Videos",
     excerpt:
-      "How I built a YouTube auto-publishing platform with Google OAuth, Drive integration, and Sheets-based scheduling...",
+      "Google OAuth, Drive integration, and Sheets-based scheduling for automated publishing.",
     link: "https://youtube-automatic-publishing.onrender.com/",
   },
 ];
@@ -44,7 +43,7 @@ export default function Blog() {
   return (
     <section id="blog" className="py-20" ref={ref}>
       <motion.p
-        variants={fadeUp}
+        variants={skate}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         className="font-mono text-xs text-text-muted mb-6"
@@ -53,7 +52,7 @@ export default function Blog() {
       </motion.p>
 
       <motion.div
-        variants={fadeUp}
+        variants={skate}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         custom={1}
@@ -73,11 +72,16 @@ export default function Blog() {
             target={post.link !== "#" ? "_blank" : undefined}
             rel={post.link !== "#" ? "noopener noreferrer" : undefined}
             key={post.title}
-            variants={fadeUp}
+            variants={skate}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             custom={i + 2}
-            whileHover={{ x: 6, transition: { duration: 0.2 } }}
+            whileHover={{
+              x: 10,
+              scale: 1.01,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+              transition: { duration: 0.3 },
+            }}
             className="group rounded-2xl glass-card p-5 transition-colors duration-500 cursor-pointer block"
           >
             <div className="flex flex-wrap items-center gap-3 mb-3">

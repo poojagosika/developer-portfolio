@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { fadeUp } from "../animations";
+import { baseline, panLeft } from "../animations";
 
 const experiences = [
   {
@@ -9,12 +9,9 @@ const experiences = [
     type: "Full-time · Remote",
     period: "Mar 2026 — Present",
     details: [
-      "Built and shipped Upivot — an EdTech mentorship platform for PM career transitions (37% placement rate)",
-      "Built InterviewPrepUp — an AI-powered PM interview simulator with 5-dimension competency scoring",
-      "Designed scalable full-stack architecture using MERN stack for both products",
-      "Set up CI/CD pipelines with GitHub Actions, Docker, and AWS (EC2, S3, CloudFront, ECS)",
-      "Implemented AI follow-up probing and quote-based feedback systems for interview evaluation",
-      "Optimized application performance, SEO, and deployment efficiency through automation",
+      "Built and shipped Upivot & InterviewPrepUp — EdTech + AI interview platform",
+      "Full-stack MERN architecture with AWS (EC2, S3, CloudFront, ECS)",
+      "CI/CD pipelines with GitHub Actions & Docker for automated deployments",
     ],
     tags: ["MERN", "AWS", "Docker", "CI/CD", "AI/ML", "Tailwind CSS"],
   },
@@ -24,10 +21,8 @@ const experiences = [
     type: "Full-time · Hybrid",
     period: "Nov 2023 — Mar 2026",
     details: [
-      "Worked as a Salesforce Developer building enterprise-grade solutions",
-      "Developed and customized applications using Apex, Lightning Components",
-      "Collaborated with cross-functional teams to deliver scalable business solutions",
-      "Strengthened understanding of scalable architectures and clean coding practices",
+      "Salesforce Developer building enterprise-grade solutions with Apex & Lightning",
+      "Delivered scalable business solutions with cross-functional teams",
     ],
     tags: ["Salesforce", "Apex", "Lightning", "JavaScript"],
   },
@@ -37,10 +32,8 @@ const experiences = [
     type: "Internship · Remote",
     period: "Nov 2019 — Apr 2020",
     details: [
-      "Developed responsive web interfaces using AngularJS, HTML5, CSS3, and JavaScript",
-      "Built and optimized reusable UI components to improve development efficiency",
-      "Collaborated with backend teams to integrate APIs and ensure seamless data flow",
-      "Contributed to UI/UX improvements using Adobe Photoshop",
+      "Built responsive web interfaces with AngularJS, HTML5 & CSS3",
+      "Integrated APIs and optimized reusable UI components",
     ],
     tags: ["AngularJS", "HTML5", "CSS3", "JavaScript", "Photoshop"],
   },
@@ -52,7 +45,7 @@ export default function Experience() {
   return (
     <section id="experience" className="py-20" ref={ref}>
       <motion.p
-        variants={fadeUp}
+        variants={baseline}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         className="font-mono text-xs text-text-muted mb-6"
@@ -61,7 +54,7 @@ export default function Experience() {
       </motion.p>
 
       <motion.div
-        variants={fadeUp}
+        variants={baseline}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         custom={1}
@@ -81,7 +74,7 @@ export default function Experience() {
           {experiences.map((exp, i) => (
             <motion.div
               key={exp.title + exp.company}
-              variants={fadeUp}
+              variants={baseline}
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               custom={i + 2}
@@ -96,7 +89,12 @@ export default function Experience() {
               </div>
 
               <motion.div
-                whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                whileHover={{
+                  x: 8,
+                  scale: 1.01,
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.2)",
+                  transition: { duration: 0.3 },
+                }}
                 className="rounded-2xl glass-card p-5 transition-colors duration-500 group"
               >
                 <div className="flex flex-wrap items-start justify-between gap-2 mb-3">

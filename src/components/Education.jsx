@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FiBookOpen } from "react-icons/fi";
-import { fadeUp, staggerContainer, staggerItem } from "../animations";
+import { bounce, staggerContainer, staggerRise } from "../animations";
 
 const education = [
   {
@@ -19,12 +19,12 @@ const education = [
 ];
 
 export default function Education() {
-  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.2 });
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
 
   return (
     <section id="education" className="py-20" ref={ref}>
       <motion.p
-        variants={fadeUp}
+        variants={bounce}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         className="font-mono text-xs text-text-muted mb-6"
@@ -33,7 +33,7 @@ export default function Education() {
       </motion.p>
 
       <motion.div
-        variants={fadeUp}
+        variants={bounce}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         custom={1}
@@ -55,8 +55,13 @@ export default function Education() {
         {education.map((edu) => (
           <motion.div
             key={edu.degree}
-            variants={staggerItem}
-            whileHover={{ y: -3, transition: { duration: 0.2 } }}
+            variants={staggerRise}
+            whileHover={{
+              y: -5,
+              scale: 1.03,
+              rotate: -1,
+              transition: { duration: 0.3, type: "spring", stiffness: 200 },
+            }}
             className="group rounded-2xl glass-card p-5 transition-colors duration-500"
           >
             <div className="flex gap-4">

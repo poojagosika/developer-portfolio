@@ -1,6 +1,41 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiArrowRight, FiMessageCircle } from "react-icons/fi";
 import MacTerminal from "./MacTerminal";
+
+function Typewriter({ text, delay = 0, speed = 60, className }) {
+  const [displayed, setDisplayed] = useState("");
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const startTimer = setTimeout(() => setStarted(true), delay);
+    return () => clearTimeout(startTimer);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!started) return;
+    if (displayed.length < text.length) {
+      const timer = setTimeout(() => {
+        setDisplayed(text.slice(0, displayed.length + 1));
+      }, speed);
+      return () => clearTimeout(timer);
+    }
+  }, [displayed, started, text, speed]);
+
+  return (
+    <span className={className}>
+      {displayed}
+      {started && displayed.length < text.length && (
+        <span
+          className="text-text-primary"
+          style={{ animation: "blink 0.6s step-end infinite" }}
+        >
+          |
+        </span>
+      )}
+    </span>
+  );
+}
 
 export default function Hero() {
   return (
@@ -27,14 +62,19 @@ export default function Hero() {
         </div>
 
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-2">
-          Hey, I'm{" "}
+          <Typewriter text="Hey, I'm " delay={400} speed={70} />
           <span className="relative inline-block">
-            <span className="text-white">Pooja</span>
+            <Typewriter
+              text="Pooja"
+              delay={1050}
+              speed={90}
+              className="text-white"
+            />
             <motion.div
               className="absolute -bottom-1 left-0 right-0 h-px bg-white/40"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              transition={{ duration: 0.8, delay: 1 }}
+              transition={{ duration: 0.8, delay: 1.8 }}
               style={{ transformOrigin: "left" }}
             />
           </span>
@@ -101,14 +141,14 @@ export default function Hero() {
         className="max-w-md"
       >
         <MacTerminal title="stack.sh">
-          <span className="text-text-muted">$ </span>
-          <span className="text-text-primary">echo $CURRENT_STACK</span>
+          <span className="text-[#28c840]">$ </span>
+          <span className="text-[#28c840]">echo $CURRENT_STACK</span>
           <div className="text-text-secondary mt-1">
             MERN | AWS | Docker | CI/CD
           </div>
-          <div className="text-text-muted mt-1">
-            <span className="text-text-muted">$ </span>
-            <span className="text-text-secondary">Building AutoPublish...</span>
+          <div className="mt-1">
+            <span className="text-[#28c840]">$ </span>
+            <span className="text-[#28c840]">Building AutoPublish...</span>
           </div>
           <div className="mt-1">
             <span className="text-text-muted">$ </span>

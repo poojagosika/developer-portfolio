@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { fadeUp, staggerContainer, staggerItem } from "../animations";
+import { pop, spread } from "../animations";
 import MacTerminal from "./MacTerminal";
 
 const d = (name) =>
@@ -71,24 +70,26 @@ const techCategories = [
   },
 ];
 
-export default function TechStack() {
-  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.05 });
+const viewportOnce = { once: false, amount: 0.3 };
 
+export default function TechStack() {
   return (
-    <section id="techstack" className="py-20" ref={ref}>
+    <section id="techstack" className="py-20">
       <motion.p
-        variants={fadeUp}
+        variants={pop}
         initial="hidden"
-        animate={inView ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={viewportOnce}
         className="font-mono text-xs text-text-muted mb-6"
       >
         &lt;!-- Tech Stack section --&gt;
       </motion.p>
 
       <motion.div
-        variants={fadeUp}
+        variants={pop}
         initial="hidden"
-        animate={inView ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={viewportOnce}
         custom={1}
       >
         <div className="flex items-center gap-4 mb-10">
@@ -101,10 +102,10 @@ export default function TechStack() {
 
       {/* MERN Highlight */}
       <motion.div
-        variants={fadeUp}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        custom={2}
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={viewportOnce}
+        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
       >
         <MacTerminal title="primary-stack.config" className="mb-10">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -117,8 +118,9 @@ export default function TechStack() {
               <motion.div
                 key={tech.name}
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false }}
+                transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
                 whileHover={{ scale: 1.08 }}
                 className="flex flex-col items-center gap-2 p-4 rounded-xl border border-white/4 bg-white/2 hover:bg-white/4 transition-colors"
               >
@@ -138,14 +140,15 @@ export default function TechStack() {
       </motion.div>
 
       {/* All Categories */}
-      <motion.div
-        className="space-y-6"
-        variants={staggerContainer}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-      >
+      <div className="space-y-6">
         {techCategories.map((cat) => (
-          <motion.div key={cat.title} variants={staggerItem}>
+          <motion.div
+            key={cat.title}
+            variants={spread}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             <h3 className="font-mono text-xs text-text-muted mb-4">
               // {cat.title.toLowerCase()}
             </h3>
@@ -154,8 +157,9 @@ export default function TechStack() {
                 <motion.div
                   key={item.name}
                   initial={{ opacity: 0, y: 10 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.3, delay: 0.6 + i * 0.04 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false }}
+                  transition={{ duration: 0.3, delay: i * 0.04 }}
                   whileHover={{
                     y: -4,
                     scale: 1.05,
@@ -182,7 +186,7 @@ export default function TechStack() {
             </div>
           </motion.div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 }

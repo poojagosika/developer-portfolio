@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FiSend, FiMapPin } from "react-icons/fi";
 import { FaEnvelope, FaGithub, FaLinkedinIn } from "react-icons/fa6";
-import { fadeUp } from "../animations";
+import { rise, panLeft } from "../animations";
 import MacTerminal from "./MacTerminal";
 
 export default function Contact() {
@@ -14,18 +14,43 @@ export default function Contact() {
     subject: "",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("idle");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setStatus("sending");
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "6556837b-7d68-40bd-b598-266f27ab5186",
+          from_name: formData.name,
+          subject: formData.subject || "Portfolio Contact Form",
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      if (res.ok) {
+        setStatus("sent");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => setStatus("idle"), 3000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 3000);
+      }
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 3000);
+    }
   };
 
   return (
     <section id="contact" className="py-20" ref={ref}>
       <motion.p
-        variants={fadeUp}
+        variants={rise}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         className="font-mono text-xs text-text-muted mb-6"
@@ -34,7 +59,7 @@ export default function Contact() {
       </motion.p>
 
       <motion.div
-        variants={fadeUp}
+        variants={rise}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         custom={1}
@@ -50,7 +75,7 @@ export default function Contact() {
       <div className="grid lg:grid-cols-5 gap-8">
         <motion.div
           className="lg:col-span-2"
-          variants={fadeUp}
+          variants={panLeft}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           custom={2}
@@ -66,7 +91,7 @@ export default function Contact() {
 
           <div className="space-y-3 mb-6">
             <a
-              href="mailto:pgstechmail@gmail.com"
+              href="mailto:pooja0xdev@gmail.com"
               className="flex items-center gap-3 text-text-secondary hover:text-text-primary transition-colors"
             >
               <div className="w-9 h-9 rounded-lg bg-white/4 border border-white/4 flex items-center justify-center">
@@ -108,7 +133,7 @@ export default function Contact() {
         <motion.form
           className="lg:col-span-3 space-y-4"
           onSubmit={handleSubmit}
-          variants={fadeUp}
+          variants={rise}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           custom={3}
@@ -179,16 +204,25 @@ export default function Contact() {
 
           <motion.button
             type="submit"
+            disabled={status === "sending"}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
             className={`flex items-center justify-center gap-2 w-full py-3 rounded-xl font-medium transition-all duration-500 cursor-pointer ${
-              submitted
-                ? "bg-text-secondary text-bg-primary"
-                : "bg-text-primary hover:bg-white text-bg-primary"
+              status === "sent"
+                ? "bg-[#28c840] text-bg-primary"
+                : status === "error"
+                  ? "bg-red-500 text-white"
+                  : status === "sending"
+                    ? "bg-text-muted text-bg-primary cursor-wait"
+                    : "bg-text-primary hover:bg-white text-bg-primary"
             }`}
           >
-            {submitted ? (
+            {status === "sending" ? (
+              "Sending..."
+            ) : status === "sent" ? (
               "Message Sent!"
+            ) : status === "error" ? (
+              "Failed to send. Try again."
             ) : (
               <>
                 <FiSend size={16} /> Send Message

@@ -1,26 +1,26 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
-import { fadeUp, staggerContainer, staggerItem } from "../animations";
+import { rise, staggerContainer, staggerPop } from "../animations";
 
 const projects = [
   {
     title: "Upivot — PM Mentorship Platform",
-    desc: "EdTech platform offering 1:1 mentorship for Product Manager career transitions. 37% of students land PM roles within 4 months, with alumni at CRED, Morgan Stanley, Capgemini & more.",
+    desc: "EdTech mentorship platform for PM career transitions. 37% placement rate, alumni at CRED, Morgan Stanley & more.",
     tags: ["React", "Node.js", "MongoDB", "AWS", "Tailwind CSS"],
     image: "/upivot.png",
     live: "https://www.upivot.in",
   },
   {
     title: "InterviewPrepUp — AI Interview Practice",
-    desc: "AI-powered PM interview simulator with follow-up probing, quote-based feedback, and 5-dimension competency scoring. Built on 3000+ real MAANG interview patterns.",
+    desc: "AI-powered PM interview simulator with 5-dimension scoring. Built on 3000+ real MAANG interview patterns.",
     tags: ["React", "Node.js", "AI/ML", "MongoDB", "AWS"],
     image: "/interviewprepup.png",
     live: "https://www.interviewprepup.com",
   },
   {
     title: "AutoPublish — YouTube Auto Publisher",
-    desc: "Auto-publish YouTube videos from Google Drive, scheduled via Google Sheets. Per-user Google OAuth, role-based access, and automated scheduling.",
+    desc: "Auto-publish YouTube videos from Google Drive, scheduled via Google Sheets with OAuth & role-based access.",
     tags: [
       "Node.js",
       "Express",
@@ -46,7 +46,7 @@ export default function Work() {
   return (
     <section id="work" className="py-20" ref={ref}>
       <motion.p
-        variants={fadeUp}
+        variants={rise}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         className="font-mono text-xs text-text-muted mb-6"
@@ -55,7 +55,7 @@ export default function Work() {
       </motion.p>
 
       <motion.div
-        variants={fadeUp}
+        variants={rise}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         custom={1}
@@ -77,8 +77,13 @@ export default function Work() {
         {projects.map((project) => (
           <motion.div
             key={project.title}
-            variants={staggerItem}
-            whileHover={{ y: -6, transition: { duration: 0.25 } }}
+            variants={staggerPop}
+            whileHover={{
+              y: -8,
+              scale: 1.02,
+              boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
+              transition: { duration: 0.3 },
+            }}
             className="group rounded-2xl glass-card overflow-hidden transition-colors duration-500"
           >
             <div className="h-50 bg-bg-hover/30 flex items-center justify-center relative overflow-hidden border-b border-white/3">

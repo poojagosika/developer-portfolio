@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { fadeUp } from "../animations";
+import { wipe, panRight } from "../animations";
 import MacTerminal from "./MacTerminal";
 
 export default function About() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
 
   return (
     <section id="about" className="py-20" ref={ref}>
       <motion.p
-        variants={fadeUp}
+        variants={wipe}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         className="font-mono text-xs text-text-muted mb-6"
@@ -18,7 +18,7 @@ export default function About() {
       </motion.p>
 
       <motion.div
-        variants={fadeUp}
+        variants={wipe}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         custom={1}
@@ -34,7 +34,7 @@ export default function About() {
       <div className="grid lg:grid-cols-5 gap-10">
         <motion.div
           className="lg:col-span-3 space-y-4"
-          variants={fadeUp}
+          variants={wipe}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           custom={2}
@@ -65,7 +65,7 @@ export default function About() {
 
         <motion.div
           className="lg:col-span-2"
-          variants={fadeUp}
+          variants={panRight}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           custom={3}

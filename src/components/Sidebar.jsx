@@ -4,7 +4,6 @@ import {
   FaGithub,
   FaLinkedinIn,
   FaXTwitter,
-  FaInstagram,
   FaEnvelope,
 } from "react-icons/fa6";
 import MacTerminal from "./MacTerminal";
@@ -100,14 +99,17 @@ export default function Sidebar() {
             },
             {
               icon: FaLinkedinIn,
-              href: "https://linkedin.com/in/poojagosika",
+              href: "https://www.linkedin.com/in/poojagosika/",
               label: "LinkedIn",
             },
-            { icon: FaXTwitter, href: "#", label: "Twitter" },
-            { icon: FaInstagram, href: "#", label: "Instagram" },
+            {
+              icon: FaXTwitter,
+              href: "https://x.com/0xPoojaDev",
+              label: "Twitter",
+            },
             {
               icon: FaEnvelope,
-              href: "mailto:pgstechmail@gmail.com",
+              href: "https://mail.google.com/mail/?view=cm&to=pooja0xdev@gmail.com",
               label: "Email",
             },
           ].map(({ icon: Icon, href, label }) => (
@@ -126,21 +128,21 @@ export default function Sidebar() {
 
         {/* Code snippet */}
         <motion.div
-          initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <MacTerminal title="pooja.js" className="mt-6">
             <div className="text-[11px] text-text-muted">
               {[
-                { key: 'const', value: 'dev', line: 'header' },
-                { key: 'name', value: '"Pooja"' },
-                { key: 'role', value: '"Lead SDE"' },
-                { key: 'stack', value: '"MERN + DevOps"' },
-                { key: 'coffee', value: 'true', primary: true },
-                { key: 'building', value: '"InterviewPrepUp"', last: true },
+                { key: "const", value: "dev", line: "header" },
+                { key: "name", value: '"Pooja"' },
+                { key: "role", value: '"Lead SDE"' },
+                { key: "stack", value: '"MERN + DevOps"' },
+                { key: "coffee", value: "true", primary: true },
+                { key: "building", value: '"InterviewPrepUp"', last: true },
               ].map((item, i) =>
-                item.line === 'header' ? (
+                item.line === "header" ? (
                   <motion.div
                     key={item.key}
                     initial={{ opacity: 0, x: -20 }}
@@ -159,12 +161,18 @@ export default function Sidebar() {
                     transition={{ delay: 1 + i * 0.1, duration: 0.5 }}
                   >
                     <span className="text-text-muted">{item.key}:</span>{" "}
-                    <span className={item.primary ? "text-text-primary" : "text-text-secondary"}>
+                    <span
+                      className={
+                        item.primary
+                          ? "text-text-primary"
+                          : "text-text-secondary"
+                      }
+                    >
                       {item.value}
                     </span>
                     {!item.last && ","}
                   </motion.div>
-                )
+                ),
               )}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}

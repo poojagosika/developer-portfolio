@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FiCode, FiServer, FiLayers, FiLayout } from "react-icons/fi";
-import { fadeUp, staggerContainer, staggerItem } from "../animations";
+import { blur, staggerContainer, staggerBounce } from "../animations";
 
 const services = [
   {
@@ -32,7 +32,7 @@ export default function Services() {
   return (
     <section id="services" className="py-20" ref={ref}>
       <motion.p
-        variants={fadeUp}
+        variants={blur}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         className="font-mono text-xs text-text-muted mb-6"
@@ -41,7 +41,7 @@ export default function Services() {
       </motion.p>
 
       <motion.div
-        variants={fadeUp}
+        variants={blur}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         custom={1}
@@ -63,8 +63,13 @@ export default function Services() {
         {services.map((service) => (
           <motion.div
             key={service.title}
-            variants={staggerItem}
-            whileHover={{ y: -4, transition: { duration: 0.2 } }}
+            variants={staggerBounce}
+            whileHover={{
+              y: -6,
+              rotate: 1,
+              scale: 1.03,
+              transition: { duration: 0.3, type: "spring", stiffness: 200 },
+            }}
             className="group relative rounded-2xl glass-card p-6 transition-colors duration-500"
           >
             <div className="inline-flex p-3 rounded-xl bg-white/6 border border-white/6 mb-4 group-hover:bg-white/6 transition-colors">

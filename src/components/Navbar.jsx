@@ -37,8 +37,8 @@ export default function Navbar({ mobileMenuOpen, setMobileMenuOpen }) {
           {/* Desktop Nav Links */}
           <div className="hidden lg:flex items-center gap-1">
             {[
-              { href: "#about", label: "about", ext: ".info" },
               { href: "#work", label: "work", ext: ".done" },
+              { href: "#about", label: "about", ext: ".info" },
               { href: "#experience", label: "experience", ext: ".log" },
               { href: "#blog", label: "blog", ext: ".share" },
               { href: "#contact", label: "contact", ext: ".send" },

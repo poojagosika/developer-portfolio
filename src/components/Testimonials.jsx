@@ -1,25 +1,25 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { fadeUp, staggerContainer, staggerItem } from "../animations";
+import { fade, staggerContainer, staggerSkate } from "../animations";
 
 const testimonials = [
   {
-    text: "An exceptional developer who consistently delivers high-quality code. Their attention to detail and problem-solving skills are remarkable.",
-    name: "John Doe",
-    role: "Engineering Manager, Tech Co.",
-    initials: "JD",
+    text: "Pooja single-handedly built and shipped our entire platform — from architecture to deployment. Her ability to own the full product lifecycle is rare and invaluable.",
+    name: "Abhik Chowdhury",
+    role: "Founder, Upivot",
+    initials: "AC",
   },
   {
-    text: "Working with Pooja was a fantastic experience. They understood our requirements perfectly and delivered beyond expectations.",
-    name: "Alice Smith",
-    role: "Product Manager, Digital Agency",
-    initials: "AS",
+    text: "One of the most reliable engineers I've worked with. She doesn't just write code — she thinks about scale, performance, and user experience at every step.",
+    name: "Ravi Shankar",
+    role: "Engineering Lead, Accenture",
+    initials: "RS",
   },
   {
-    text: "A true team player with excellent communication skills. They bring both technical expertise and creative thinking to every project.",
-    name: "Mike Johnson",
-    role: "CTO, Startup Labs",
-    initials: "MJ",
+    text: "Pooja brought our vision to life with clean, maintainable code and pixel-perfect execution. Her communication and delivery are consistently top-notch.",
+    name: "Neha Verma",
+    role: "Product Manager, Upivot",
+    initials: "NV",
   },
 ];
 
@@ -29,7 +29,7 @@ export default function Testimonials() {
   return (
     <section id="testimonials" className="py-20" ref={ref}>
       <motion.p
-        variants={fadeUp}
+        variants={fade}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         className="font-mono text-xs text-text-muted mb-6"
@@ -38,7 +38,7 @@ export default function Testimonials() {
       </motion.p>
 
       <motion.div
-        variants={fadeUp}
+        variants={fade}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         custom={1}
@@ -60,8 +60,12 @@ export default function Testimonials() {
         {testimonials.map((t) => (
           <motion.div
             key={t.name}
-            variants={staggerItem}
-            whileHover={{ y: -3, transition: { duration: 0.2 } }}
+            variants={staggerSkate}
+            whileHover={{
+              y: -6,
+              scale: 1.03,
+              transition: { duration: 0.3, type: "spring", stiffness: 150 },
+            }}
             className="group rounded-2xl glass-card p-6 transition-colors duration-500 relative overflow-hidden"
           >
             <span className="absolute top-3 right-4 text-5xl font-serif text-white/3 select-none leading-none">

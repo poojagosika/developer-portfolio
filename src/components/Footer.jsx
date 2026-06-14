@@ -11,15 +11,18 @@ export default function Footer() {
         <p className="font-mono text-sm text-text-muted">
           <span className="text-text-muted">&lt;/</span>
           <span className="text-text-secondary">Pooja</span>
-          <span className="text-text-muted">&gt;</span> &copy; {new Date().getFullYear()}. Built
-          end-to-end with code &amp; coffee.
+          <span className="text-text-muted">&gt;</span> &copy;{" "}
+          {new Date().getFullYear()}. Built end-to-end with code &amp; coffee.
         </p>
 
         <div className="flex gap-4">
           {[
             { name: "GitHub", href: "https://github.com/poojagosika" },
-            { name: "LinkedIn", href: "https://linkedin.com/in/poojagosika" },
-            { name: "Twitter", href: "https://x.com/@0xPoojaDev" },
+            {
+              name: "LinkedIn",
+              href: "https://www.linkedin.com/in/poojagosika/",
+            },
+            { name: "X", href: "https://x.com/0xPoojaDev" },
           ].map((link) => (
             <a
               key={link.name}

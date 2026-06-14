@@ -41,48 +41,48 @@ export default function App() {
   return (
     <div className="noise-overlay">
       <>
-          <Navbar
-            mobileMenuOpen={mobileMenuOpen}
-            setMobileMenuOpen={setMobileMenuOpen}
-          />
-          <MusicPlayer />
-          <CursorGlow />
+        <Navbar
+          mobileMenuOpen={mobileMenuOpen}
+          setMobileMenuOpen={setMobileMenuOpen}
+        />
+        <MusicPlayer />
+        <CursorGlow />
 
-          <div className="flex relative z-10">
-            {/* Left Sidebar */}
-            <Sidebar />
+        <div className="flex relative z-10">
+          {/* Left Sidebar */}
+          <Sidebar />
 
-            {/* Main Content */}
-            <main className="flex-1 min-w-0 lg:ml-72 xl:mr-48">
-              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
-                <Hero />
-                <About />
-                <Services />
-                <Work />
-                <Experience />
-                <Education />
-                <Certifications />
-                <TechStack />
-                <Testimonials />
-                <Blog />
-                <Contact />
-                <Footer />
-              </div>
-            </main>
+          {/* Main Content */}
+          <main className="flex-1 min-w-0 lg:ml-72 xl:mr-48">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
+              <Hero />
+              <Work />
+              <About />
+              <Services />
+              <Experience />
+              <Education />
+              <Certifications />
+              <TechStack />
+              <Testimonials />
+              <Blog />
+              <Contact />
+              <Footer />
+            </div>
+          </main>
 
-            {/* Right Sidebar - Section Index */}
-            <SectionIndex activeSection={activeSection} />
-          </div>
+          {/* Right Sidebar - Section Index */}
+          <SectionIndex activeSection={activeSection} />
+        </div>
 
-          {/* Mobile Menu Overlay */}
-          <AnimatePresence>
-            {mobileMenuOpen && (
-              <MobileMenu
-                setMobileMenuOpen={setMobileMenuOpen}
-                activeSection={activeSection}
-              />
-            )}
-          </AnimatePresence>
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <MobileMenu
+              setMobileMenuOpen={setMobileMenuOpen}
+              activeSection={activeSection}
+            />
+          )}
+        </AnimatePresence>
       </>
     </div>
   );
@@ -93,9 +93,9 @@ import { motion } from "framer-motion";
 function MobileMenu({ setMobileMenuOpen, activeSection }) {
   const sections = [
     { id: "hero", label: "hero", num: "01" },
-    { id: "about", label: "about", num: "02" },
-    { id: "services", label: "services", num: "03" },
-    { id: "work", label: "work", num: "04" },
+    { id: "work", label: "work", num: "02" },
+    { id: "about", label: "about", num: "03" },
+    { id: "services", label: "services", num: "04" },
     { id: "experience", label: "experience", num: "05" },
     { id: "education", label: "education", num: "06" },
     { id: "certifications", label: "certs", num: "07" },
