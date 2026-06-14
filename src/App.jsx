@@ -17,6 +17,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import MusicPlayer from "./components/MusicPlayer";
 import CursorGlow from "./components/CursorGlow";
+import SplashCursor from "./components/SplashCursor";
 export default function App() {
   const [activeSection, setActiveSection] = useState("hero");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -46,7 +47,7 @@ export default function App() {
           setMobileMenuOpen={setMobileMenuOpen}
         />
         <MusicPlayer />
-        <CursorGlow />
+        <SplashCursor />
 
         <div className="flex relative z-10">
           {/* Left Sidebar */}
