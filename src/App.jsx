@@ -40,7 +40,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="noise-overlay">
+    <div className="noise-overlay overflow-x-hidden">
       <>
         <Navbar
           mobileMenuOpen={mobileMenuOpen}
@@ -49,7 +49,7 @@ export default function App() {
         <MusicPlayer />
         <SplashCursor />
 
-        <div className="flex relative z-10">
+        <div className="flex relative z-10 overflow-x-hidden">
           {/* Left Sidebar */}
           <Sidebar />
 
