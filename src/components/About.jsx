@@ -40,19 +40,20 @@ export default function About() {
           custom={2}
         >
           <p className="text-text-secondary leading-relaxed">
-            I'm a Lead Software Engineer who builds and scales products
-            end-to-end — from idea to deployment to optimization. I don't just
-            write code — I own outcomes. From architecture decisions to
-            production deployment, I ensure systems are efficient, scalable, and
-            production-ready.
+            I'm a Lead Software Engineer who builds products end-to-end, from
+            the first conversation about what to build to keeping it fast and
+            stable in production. I care about outcomes more than tickets: the
+            right architecture, a clean deploy, and a product people actually
+            use.
           </p>
           <p className="text-text-secondary leading-relaxed">
             Currently at{" "}
             <span className="text-text-primary font-medium">Upivot</span>, I
-            operate as a Lead Developer, owning the entire product lifecycle —
-            translating business requirements into scalable features, designing
-            full-stack applications with the MERN stack, and managing AWS
-            infrastructure & CI/CD pipelines.
+            own engineering for two products. Upivot is the platform behind a PM
+            career program: video lessons, payments, cohorts and admin tools.
+            InterviewPrepUp is an AI mock interviewer with real-time voice,
+            speech-to-text and LLM scoring. I designed both on React, Node.js
+            and MongoDB, and run them on AWS with CI/CD.
           </p>
           <p className="text-text-secondary leading-relaxed">
             Previously at{" "}
@@ -60,6 +61,12 @@ export default function About() {
             worked as a Software Developer specializing in Salesforce, building
             enterprise-grade solutions and gaining strong foundations in
             scalable system design.
+          </p>
+          <p className="text-text-secondary leading-relaxed">
+            Outside work I contribute to open source. I've had fixes merged in{" "}
+            <span className="text-text-primary font-medium">TraceRoot</span>,{" "}
+            <span className="text-text-primary font-medium">Modelence</span> and{" "}
+            <span className="text-text-primary font-medium">Lago</span>.
           </p>
         </motion.div>
 
@@ -77,9 +84,10 @@ export default function About() {
                 { label: "role", value: '"Lead Software Engineer"' },
                 { label: "company", value: '"Upivot"' },
                 { label: "location", value: '"Hyderabad, India"' },
-                { label: "stack", value: '"MERN + DevOps"' },
+                { label: "open_to", value: '"Remote / US roles"' },
+                { label: "stack", value: '"MERN + AI + AWS"' },
                 { label: "education", value: '"B.Tech ECE"' },
-                { label: "focus", value: '"Scalable Systems"' },
+                { label: "focus", value: '"AI products"' },
                 { label: "email", value: '"pooja0xdev@gmail.com"' },
               ].map((item) => (
                 <div

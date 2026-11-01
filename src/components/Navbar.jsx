@@ -40,7 +40,7 @@ export default function Navbar({ mobileMenuOpen, setMobileMenuOpen }) {
               { href: "#work", label: "work", ext: ".done" },
               { href: "#about", label: "about", ext: ".info" },
               { href: "#experience", label: "experience", ext: ".log" },
-              { href: "#blog", label: "blog", ext: ".share" },
+              { href: "#opensource", label: "open", ext: ".source" },
               { href: "#contact", label: "contact", ext: ".send" },
             ].map((link) => (
               <a

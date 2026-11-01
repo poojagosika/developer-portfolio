@@ -10,7 +10,7 @@ const sections = [
   { id: "certifications", label: "certs", num: "07" },
   { id: "techstack", label: "tech", num: "08" },
   { id: "testimonials", label: "reviews", num: "09" },
-  { id: "blog", label: "blog", num: "10" },
+  { id: "opensource", label: "oss", num: "10" },
   { id: "contact", label: "contact", num: "11" },
 ];
 

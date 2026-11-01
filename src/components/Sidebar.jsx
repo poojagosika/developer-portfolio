@@ -8,6 +8,10 @@ import {
 } from "react-icons/fa6";
 import MacTerminal from "./MacTerminal";
 
+// Put your resume PDF in /public and set its path here, e.g. "/Pooja_Gosika_Resume.pdf".
+// The Resume button stays hidden while this is empty, so visitors never hit a dead link.
+const RESUME_URL = "";
+
 export default function Sidebar() {
   return (
     <aside className="hidden lg:block fixed left-0 top-0 w-72 h-screen z-30 glass-sidebar overflow-y-auto">
@@ -35,7 +39,7 @@ export default function Sidebar() {
             </div>
             <div>
               <h2 className="text-lg font-bold text-text-primary leading-tight">
-                Pooja
+                Pooja Gosika
               </h2>
               <p className="font-mono text-xs text-text-secondary">
                 Lead Software Engineer
@@ -44,6 +48,9 @@ export default function Sidebar() {
                 <FiMapPin size={10} />
                 <span className="font-mono text-[10px]">Hyderabad, India</span>
               </div>
+              <p className="font-mono text-[10px] text-text-muted mt-0.5">
+                Open to remote & US roles
+              </p>
             </div>
           </div>
 
@@ -56,9 +63,9 @@ export default function Sidebar() {
               </div>
             </div>
             <div className="glass-card rounded-xl p-3 text-center">
-              <div className="text-lg font-bold text-text-primary">500+</div>
+              <div className="text-lg font-bold text-text-primary">5</div>
               <div className="font-mono text-[10px] text-text-muted uppercase tracking-wider">
-                Connections
+                OSS PRs merged
               </div>
             </div>
           </div>
@@ -71,13 +78,17 @@ export default function Sidebar() {
             >
               Let's Talk
             </a>
-            <a
-              href="#"
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-border hover:border-border-hover text-text-secondary hover:text-text-primary text-sm font-medium transition-all duration-300"
-            >
-              <FiDownload size={14} />
-              Resume
-            </a>
+            {RESUME_URL && (
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-border hover:border-border-hover text-text-secondary hover:text-text-primary text-sm font-medium transition-all duration-300"
+              >
+                <FiDownload size={14} />
+                Resume
+              </a>
+            )}
           </div>
         </motion.div>
 
@@ -138,7 +149,7 @@ export default function Sidebar() {
                 { key: "const", value: "dev", line: "header" },
                 { key: "name", value: '"Pooja"' },
                 { key: "role", value: '"Lead SDE"' },
-                { key: "stack", value: '"MERN + DevOps"' },
+                { key: "stack", value: '"MERN + AI + AWS"' },
                 { key: "coffee", value: "true", primary: true },
                 { key: "building", value: '"InterviewPrepUp"', last: true },
               ].map((item, i) =>

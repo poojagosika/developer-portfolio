@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { pop, spread } from "../animations";
+import { SiOpenai, SiLangchain } from "react-icons/si";
+import { TbWaveSine } from "react-icons/tb";
 import MacTerminal from "./MacTerminal";
 
 const d = (name) =>
@@ -38,6 +40,14 @@ const techCategories = [
       { name: "MySQL", icon: d("mysql/mysql-original.svg") },
       { name: "Oracle", icon: d("oracle/oracle-original.svg") },
       { name: "Firebase", icon: d("firebase/firebase-original.svg") },
+    ],
+  },
+  {
+    title: "AI",
+    items: [
+      { name: "OpenAI API", Icon: SiOpenai },
+      { name: "LangChain", Icon: SiLangchain },
+      { name: "Whisper (speech-to-text)", Icon: TbWaveSine },
     ],
   },
   {
@@ -167,17 +177,24 @@ export default function TechStack() {
                   }}
                   className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl glass-card transition-colors duration-300 cursor-default"
                 >
-                  <img
-                    src={item.icon}
-                    alt={item.name}
-                    className="w-5 h-5"
-                    loading="lazy"
-                    style={
-                      item.name === "Express"
-                        ? { filter: "invert(1)" }
-                        : undefined
-                    }
-                  />
+                  {item.Icon ? (
+                    <item.Icon
+                      className="w-5 h-5 text-text-primary"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <img
+                      src={item.icon}
+                      alt={item.name}
+                      className="w-5 h-5"
+                      loading="lazy"
+                      style={
+                        item.name === "Express"
+                          ? { filter: "invert(1)" }
+                          : undefined
+                      }
+                    />
+                  )}
                   <span className="font-mono text-xs text-text-secondary">
                     {item.name}
                   </span>

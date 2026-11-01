@@ -12,7 +12,7 @@ import Education from "./components/Education";
 import Certifications from "./components/Certifications";
 import TechStack from "./components/TechStack";
 import Testimonials from "./components/Testimonials";
-import Blog from "./components/Blog";
+import OpenSource from "./components/OpenSource";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import MusicPlayer from "./components/MusicPlayer";
@@ -65,7 +65,7 @@ export default function App() {
               <Certifications />
               <TechStack />
               <Testimonials />
-              <Blog />
+              <OpenSource />
               <Contact />
               <Footer />
             </div>
@@ -102,7 +102,7 @@ function MobileMenu({ setMobileMenuOpen, activeSection }) {
     { id: "certifications", label: "certs", num: "07" },
     { id: "techstack", label: "tech stack", num: "08" },
     { id: "testimonials", label: "testimonials", num: "09" },
-    { id: "blog", label: "blog", num: "10" },
+    { id: "opensource", label: "open source", num: "10" },
     { id: "contact", label: "contact", num: "11" },
   ];
 

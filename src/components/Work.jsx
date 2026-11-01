@@ -5,22 +5,28 @@ import { rise, staggerContainer, staggerPop } from "../animations";
 
 const projects = [
   {
-    title: "Upivot — PM Mentorship Platform",
-    desc: "EdTech mentorship platform for PM career transitions. 37% placement rate, alumni at CRED, Morgan Stanley & more.",
-    tags: ["React", "Node.js", "MongoDB", "AWS", "Tailwind CSS"],
-    image: "/upivot.png",
-    live: "https://www.upivot.in",
-  },
-  {
     title: "InterviewPrepUp — AI Interview Practice",
-    desc: "AI-powered PM interview simulator with 5-dimension scoring. Built on 3000+ real MAANG interview patterns.",
-    tags: ["React", "Node.js", "AI/ML", "MongoDB", "AWS"],
+    desc: "AI mock interviewer for product manager roles. Real-time voice sessions over WebSockets, LLM follow-up questions and 5-dimension scoring with OpenAI + LangChain, resume parsing, and downloadable PDF reports.",
+    tags: ["React", "Node.js", "OpenAI", "LangChain", "WebSockets", "AWS"],
     image: "/interviewprepup.png",
     live: "https://www.interviewprepup.com",
   },
   {
+    title: "Upivot — PM Mentorship Platform",
+    desc: "The full platform behind a PM career program (37% placement rate). Video lessons with HLS streaming, Whisper transcription, Razorpay payments, S3 uploads, SES email and an admin CMS.",
+    tags: ["React", "Node.js", "MongoDB", "AWS", "FFmpeg", "Razorpay"],
+    image: "/upivot.png",
+    live: "https://www.upivot.in",
+  },
+  {
+    title: "High-Performing Thumbnail",
+    desc: "Upload an image and a title, get the top 5 best-performing YouTube thumbnails with matching keywords, then design your own from them.",
+    tags: ["React", "Node.js", "Express", "MongoDB", "YouTube API"],
+    github: "https://github.com/poojagosika/high-performing-thumbnail",
+  },
+  {
     title: "AutoPublish — YouTube Auto Publisher",
-    desc: "Auto-publish YouTube videos from Google Drive, scheduled via Google Sheets with OAuth & role-based access.",
+    desc: "Publishes YouTube videos straight from Google Drive on a schedule set in Google Sheets, with Google OAuth and role-based access.",
     tags: [
       "Node.js",
       "Express",
@@ -30,13 +36,15 @@ const projects = [
     ],
     image: "/auto-publish.png",
     live: "https://youtube-automatic-publishing.onrender.com/",
+    github: "https://github.com/poojagosika/youtube-automatic-publishing",
   },
   {
     title: "Drive My Portfolio",
-    desc: "A Gaming Website built with Three.js and React, featuring a 3D interactive portfolio experience. It showcases my projects in a visually engaging manner.",
+    desc: "A 3D portfolio you explore by driving an F1 car through an open world, built with Three.js and React.",
     tags: ["JavaScript", "Three.js", "React", "Shadcn UI", "Tailwind CSS"],
     image: "/drive-my-portfolio.png",
     live: "https://poojagosika.github.io/drive-my-portfolio/",
+    github: "https://github.com/poojagosika/drive-my-portfolio",
   },
 ];
 

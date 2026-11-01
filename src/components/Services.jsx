@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { FiCode, FiServer, FiLayers, FiLayout } from "react-icons/fi";
+import { FiCode, FiServer, FiCpu, FiLayout } from "react-icons/fi";
 import { blur, staggerContainer, staggerBounce } from "../animations";
 
 const services = [
   {
     icon: FiCode,
-    title: "Web Development",
-    desc: "Building responsive, performant web applications using the MERN stack and modern best practices.",
+    title: "Full-Stack Product Engineering",
+    desc: "Taking a product from idea to launch with React, Node.js, Express and MongoDB, including auth, payments and admin tools.",
   },
   {
     icon: FiServer,
@@ -15,14 +15,14 @@ const services = [
     desc: "Setting up CI/CD pipelines, Docker containers, and AWS infrastructure for reliable, automated deployments.",
   },
   {
-    icon: FiLayers,
-    title: "API Design",
-    desc: "Designing and developing RESTful APIs with Express.js and Node.js that are scalable and well-documented.",
+    icon: FiCpu,
+    title: "AI Features",
+    desc: "Adding LLM features that hold up in production: OpenAI and LangChain, speech-to-text, real-time voice and structured scoring.",
   },
   {
     icon: FiLayout,
-    title: "UI/UX Design",
-    desc: "Crafting intuitive interfaces with a focus on user experience, accessibility, and visual appeal.",
+    title: "UI Engineering",
+    desc: "Polished, responsive interfaces with React, Tailwind and Motion, from design file to pixel-accurate build.",
   },
 ];
 

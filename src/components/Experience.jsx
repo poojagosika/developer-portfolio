@@ -9,11 +9,13 @@ const experiences = [
     type: "Full-time · Remote",
     period: "Mar 2026 — Present",
     details: [
-      "Built and shipped Upivot & InterviewPrepUp — EdTech + AI interview platform",
-      "Full-stack MERN architecture with AWS (EC2, S3, CloudFront, ECS)",
-      "CI/CD pipelines with GitHub Actions & Docker for automated deployments",
+      "Own engineering end-to-end for two live products: Upivot (PM career platform) and InterviewPrepUp (AI mock interviews)",
+      "Built an AI interviewer with real-time voice over WebSockets, LLM follow-ups and 5-dimension scoring using OpenAI + LangChain",
+      "Built a video pipeline: S3 multipart uploads, FFmpeg processing, HLS streaming and Whisper transcription",
+      "Integrated Razorpay payments, Google OAuth, AWS SES email, scheduled jobs and PDF report generation",
+      "Hardened APIs with rate limiting, input sanitization and secure headers; run deploys on AWS with Docker and GitHub Actions",
     ],
-    tags: ["MERN", "AWS", "Docker", "CI/CD", "AI/ML", "Tailwind CSS"],
+    tags: ["React", "Node.js", "MongoDB", "OpenAI", "LangChain", "AWS", "Docker"],
   },
   {
     title: "Software Engineer",

@@ -91,8 +91,8 @@ export default function Hero() {
         transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
         className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-text-secondary mb-6"
       >
-        Lead Software Engineer &{" "}
-        <span className="text-text-primary">Full Stack Developer</span>
+        Lead Software Engineer ·{" "}
+        <span className="text-text-primary">Full-Stack & AI</span>
       </motion.h2>
 
       <motion.p
@@ -101,11 +101,13 @@ export default function Hero() {
         transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         className="text-text-secondary max-w-xl text-lg leading-relaxed mb-10"
       >
-        I build and scale products end-to-end — from idea to deployment to
-        optimization. Specializing in{" "}
-        <span className="text-text-primary font-medium">MERN stack</span> and{" "}
-        <span className="text-text-primary font-medium">DevOps</span> with AWS,
-        Docker & CI/CD. Currently leading product development at Upivot.
+        I build AI-powered products end-to-end, from the first schema to
+        production on AWS. At Upivot I built and run{" "}
+        <span className="text-text-primary font-medium">Upivot</span> and{" "}
+        <span className="text-text-primary font-medium">InterviewPrepUp</span>,
+        an AI mock-interview platform with real-time voice, speech-to-text and
+        LLM feedback. I also ship fixes to open-source projects like TraceRoot,
+        Modelence and Lago.
       </motion.p>
 
       <motion.div
@@ -144,11 +146,11 @@ export default function Hero() {
           <span className="text-[#28c840]">$ </span>
           <span className="text-[#28c840]">echo $CURRENT_STACK</span>
           <div className="text-text-secondary mt-1">
-            MERN | AWS | Docker | CI/CD
+            MERN | OpenAI · LangChain | AWS | Docker
           </div>
           <div className="mt-1">
             <span className="text-[#28c840]">$ </span>
-            <span className="text-[#28c840]">Building AutoPublish...</span>
+            <span className="text-[#28c840]">Building InterviewPrepUp...</span>
           </div>
           <div className="mt-1">
             <span className="text-text-muted">$ </span>

@@ -23,15 +23,16 @@ A modern, monochrome developer portfolio built with React, Framer Motion, and Ta
 ## Sections
 
 - Hero with animated intro
+- SEO meta, Open Graph and structured data in `index.html`
 - About with terminal code snippet
 - Services offered
-- Work — Upivot, InterviewPrepUp, AutoPublish, Drive My Portfolio
+- Work — InterviewPrepUp, Upivot, High-Performing Thumbnail, AutoPublish, Drive My Portfolio
 - Experience timeline
 - Education
 - Certifications
 - Tech Stack with devicon logos
 - Testimonials
-- Blog posts with external links
+- Open source — merged pull requests to TraceRoot, Modelence and Lago
 - Contact form with social links
 
 ## Getting Started
