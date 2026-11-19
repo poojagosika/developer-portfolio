@@ -124,8 +124,8 @@ export function ContributionGrid({ initial }: { initial: Data | null }) {
             aria-label={`${data.total.toLocaleString("en-US")} GitHub contributions in the last year`}
             className="grid grid-flow-col gap-[3px] pb-[5px]"
             style={{
-              gridTemplateRows: "repeat(7, 14px)",
-              gridTemplateColumns: `repeat(${weeks}, 14px)`,
+              gridTemplateRows: "repeat(7, 12px)",
+              gridTemplateColumns: `repeat(${weeks}, 12px)`,
             }}
           >
             {Array.from({ length: lead }, (_, index) => (
@@ -137,7 +137,7 @@ export function ContributionGrid({ initial }: { initial: Data | null }) {
                 title={`${day.count === 0 ? "No" : day.count} contribution${
                   day.count === 1 ? "" : "s"
                 } on ${label(day.date)}`}
-                className={`size-[14px] rounded-[3px] transition-transform duration-100 hover:scale-125 ${
+                className={`size-[12px] rounded-[3px] transition-transform duration-100 hover:scale-125 ${
                   SHADES[day.level] ?? SHADES[0]
                 }`}
               />
@@ -152,7 +152,7 @@ export function ContributionGrid({ initial }: { initial: Data | null }) {
               <span
                 key={`${month.name}-${month.column}`}
                 className="absolute whitespace-nowrap"
-                style={{ left: month.column * 17 }}
+                style={{ left: month.column * 15 }}
               >
                 {month.name}
               </span>
