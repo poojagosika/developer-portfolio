@@ -23,7 +23,7 @@ export function Work() {
   return (
     <section id="work">
       <h2 className="label">Work</h2>
-      <ul className="mt-4 flex flex-col gap-1 md:gap-0">
+      <ul className="mt-4 flex flex-col gap-3 md:gap-0">
         {projects.map((project) => (
           <Row
             key={project.name}
@@ -69,7 +69,7 @@ function Row({
         aria-expanded={open}
         aria-controls={`${id}-panel`}
         onClick={onToggle}
-        className="transition-colors duration-150 group -mx-2 flex w-[calc(100%+1rem)] cursor-pointer items-start gap-3 px-2 md:items-center py-1.5 text-left"
+        className="transition-colors duration-150 group -mx-2 flex w-[calc(100%+1rem)] cursor-pointer items-center gap-3.5 px-2 md:gap-3 py-1.5 text-left"
       >
         {project.logo ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -78,23 +78,23 @@ function Row({
             alt=""
             width={32}
             height={32}
-            className={`bg-card ring-line mt-0.5 size-5 shrink-0 md:mt-0 rounded-[4px] ring-1 ${
-              project.logoPadded ? "object-contain p-[3px]" : "object-cover"
+            className={`bg-card ring-line size-12 shrink-0 rounded-xl md:size-8 md:rounded-lg ring-1 ${
+              project.logoPadded ? "object-contain p-1.5 md:p-1" : "object-cover"
             }`}
           />
         ) : project.emoji ? (
           <span
             aria-hidden="true"
-            className="mt-0.5 flex size-5 shrink-0 items-center md:mt-0 justify-center text-base leading-none"
+            className="bg-card ring-line flex size-12 shrink-0 items-center justify-center rounded-xl text-3xl ring-1 md:size-8 md:rounded-lg md:text-lg leading-none"
           >
-            {project.emoji}
+            <span className="-translate-y-[0.2em]">{project.emoji}</span>
           </span>
         ) : (
-          <span className="mt-0.5 shrink-0 md:mt-0">
+          <span className="shrink-0">
             <Box color={look.color}>{look.icon}</Box>
           </span>
         )}
-        <span className="flex min-w-0 flex-1 flex-col items-start gap-0.5 md:flex-row md:items-center md:gap-2.5">
+        <span className="flex w-full min-w-0 flex-1 flex-col items-start gap-0.5 md:flex-row md:items-center md:gap-2.5">
           <span className="group-hover:text-primary shrink-0 font-semibold transition-colors duration-150">
             {project.name}
           </span>
@@ -109,7 +109,7 @@ function Row({
           </span>
         </span>
         <ChevronDown
-          className={`group-hover:text-primary mt-1 size-4 shrink-0 md:mt-0 transition-[rotate,color,opacity] duration-200 ease-out group-hover:opacity-100 ${
+          className={`group-hover:text-primary hidden size-4 shrink-0 md:block transition-[rotate,color,opacity] duration-200 ease-out group-hover:opacity-100 ${
             open ? "text-primary rotate-180" : "text-foreground/40 opacity-0"
           }`}
         />
