@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   category: "technology",
   alternates: { canonical: "/" },
   icons: { icon: "/favicon.svg" },
-  // The share image comes from app/opengraph-image.tsx and twitter-image.tsx.
+  // The share image is public/og.png.
   openGraph: {
     type: "profile",
     url: "/",
@@ -41,6 +41,14 @@ export const metadata: Metadata = {
     firstName: "Pooja",
     lastName: "Gosika",
     username: "poojagosika",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Pooja Gosika, Lead Software Engineer. I build AI products end-to-end.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -48,6 +56,7 @@ export const metadata: Metadata = {
     creator: SITE.twitter,
     title: SITE.title,
     description: SITE.shortDescription,
+    images: ["/og.png"],
   },
   robots: {
     index: true,

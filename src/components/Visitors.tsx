@@ -19,8 +19,7 @@ type Data = {
 
 const HOME = project(person.home.lon, person.home.lat);
 
-// Approximate position from the visitor's IP, used when the host does not
-// provide one (local development, hosts without location headers).
+// Approximate position from the visitor's IP.
 async function lookUp(): Promise<Place | null> {
   try {
     const response = await fetch("https://get.geojs.io/v1/ip/geo.json");
@@ -65,43 +64,22 @@ export function Visitors() {
   const time = useClock(person.home.timeZone);
 
   const [you, setYou] = useState<Place | null>(null);
-  const [data, setData] = useState<Data | null>(null);
+  const [data] = useState<Data | null>(null);
   const [lit, setLit] = useState<Set<number>>(new Set());
   const [yours, setYours] = useState(-1);
   const [tip, setTip] = useState<{ name: string; x: number; y: number } | null>(
     null,
   );
 
-  // Find the visitor, load everyone else, and count this visit once per tab.
+  // Find roughly where the visitor is.
   useEffect(() => {
     if (!inView) return;
     let cancelled = false;
 
     (async () => {
-      let current: Data | null = null;
-      try {
-        const response = await fetch("/api/visitors");
-        if (response.ok) current = (await response.json()) as Data;
-      } catch {
-        // The map still works without the API.
-      }
-      const place = current?.you ?? (await lookUp());
+      const place = await lookUp();
       if (cancelled) return;
-      setData(current);
       setYou(place);
-
-      if (!current?.enabled || !place) return;
-      try {
-        if (sessionStorage.getItem("visit-counted")) return;
-        sessionStorage.setItem("visit-counted", "1");
-      } catch {
-        // Private windows may block storage; count the visit anyway.
-      }
-      fetch("/api/visitors", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(place),
-      }).catch(() => {});
     })();
 
     return () => {

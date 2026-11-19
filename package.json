@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev -p 3400",
     "build": "next build",
-    "start": "next start",
+    "start": "npx serve out",
     "typecheck": "tsc --noEmit",
     "world": "node scripts/build-world.mjs"
   },

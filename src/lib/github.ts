@@ -1,5 +1,6 @@
 // Reads the public contribution calendar from a GitHub profile. GitHub has no
 // open API for it, so this reads the same HTML the profile page loads.
+// It runs when the site is built, so the grid is as fresh as the last deploy.
 
 export type ContributionDay = {
   date: string; // "2026-11-19"
@@ -12,8 +13,6 @@ export type Contributions = {
   days: ContributionDay[];
 };
 
-const SIX_HOURS = 60 * 60 * 6;
-
 export async function getContributions(
   user: string,
 ): Promise<Contributions | null> {
@@ -22,7 +21,6 @@ export async function getContributions(
       `https://github.com/users/${user}/contributions`,
       {
         headers: { "User-Agent": "Mozilla/5.0 (portfolio site)" },
-        next: { revalidate: SIX_HOURS },
       },
     );
     if (!response.ok) return null;
