@@ -116,7 +116,7 @@ export function ContributionGrid({ initial }: { initial: Data | null }) {
 
       <div
         ref={scroller}
-        className="mt-4 overflow-x-auto [scrollbar-width:none] [mask-image:linear-gradient(to_right,black_95%,transparent)] [&::-webkit-scrollbar]:hidden"
+        className="mt-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         <div className="w-max">
           <div
