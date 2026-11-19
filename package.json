@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev -p 3400",
     "build": "next build",
-    "start": "next start -p 3400",
+    "start": "next start",
     "typecheck": "tsc --noEmit",
     "world": "node scripts/build-world.mjs"
   },
@@ -27,5 +27,8 @@
     "topojson-client": "^3.1.0",
     "typescript": "^6.0.3",
     "world-atlas": "^2.0.2"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }
