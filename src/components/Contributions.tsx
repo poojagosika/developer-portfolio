@@ -24,8 +24,8 @@ const MONTHS = [
 // One shade per GitHub level, from "nothing that day" to "a lot".
 // GitHub's own greens, light theme then dark theme.
 const SHADES = [
-  "bg-[#ebedf0] dark:bg-[#161b22]",
-  "bg-[#9be9a8] dark:bg-[#0e4429]",
+  "bg-black/5 dark:bg-white/[0.08]",
+  "bg-[#9be9a8] dark:bg-[#2b885a]",
   "bg-[#40c463] dark:bg-[#006d32]",
   "bg-[#30a14e] dark:bg-[#26a641]",
   "bg-[#216e39] dark:bg-[#39d353]",
@@ -116,16 +116,16 @@ export function ContributionGrid({ initial }: { initial: Data | null }) {
 
       <div
         ref={scroller}
-        className="mt-4 overflow-x-auto pb-1 [scrollbar-width:thin]"
+        className="mt-4 overflow-x-auto [scrollbar-width:none] [mask-image:linear-gradient(to_right,black_95%,transparent)] [&::-webkit-scrollbar]:hidden"
       >
         <div className="w-max">
           <div
             role="img"
             aria-label={`${data.total.toLocaleString("en-US")} GitHub contributions in the last year`}
-            className="grid grid-flow-col gap-[3px]"
+            className="grid grid-flow-col gap-[2px] pb-[5px]"
             style={{
-              gridTemplateRows: "repeat(7, 11px)",
-              gridTemplateColumns: `repeat(${weeks}, 11px)`,
+              gridTemplateRows: "repeat(7, 10px)",
+              gridTemplateColumns: `repeat(${weeks}, 10px)`,
             }}
           >
             {Array.from({ length: lead }, (_, index) => (
@@ -137,7 +137,7 @@ export function ContributionGrid({ initial }: { initial: Data | null }) {
                 title={`${day.count === 0 ? "No" : day.count} contribution${
                   day.count === 1 ? "" : "s"
                 } on ${label(day.date)}`}
-                className={`size-[11px] rounded-[2px] ${
+                className={`size-[10px] rounded-[2px] border border-black/[0.04] transition-transform duration-100 hover:scale-125 dark:border-white/10 ${
                   SHADES[day.level] ?? SHADES[0]
                 }`}
               />
@@ -152,7 +152,7 @@ export function ContributionGrid({ initial }: { initial: Data | null }) {
               <span
                 key={`${month.name}-${month.column}`}
                 className="absolute whitespace-nowrap"
-                style={{ left: month.column * 14 }}
+                style={{ left: month.column * 12 }}
               >
                 {month.name}
               </span>
