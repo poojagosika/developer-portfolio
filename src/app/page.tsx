@@ -6,7 +6,7 @@ import { Separator } from "@/components/ui/Separator";
 import { Rise } from "@/components/ui/Rise";
 import { Cursor } from "@/components/ui/Cursor";
 import { Header } from "@/components/Header";
-import { Contributions } from "@/components/Contributions";
+import { Contributions } from "@/components/ContributionsSection";
 import { Work } from "@/components/Work";
 import { Contributed, OpenSource } from "@/components/OpenSource";
 import { Education, Experience, Skills } from "@/components/Experience";

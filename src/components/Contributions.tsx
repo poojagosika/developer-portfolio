@@ -1,4 +1,7 @@
-import { getContributions } from "../lib/github";
+"use client";
+
+import { useEffect, useState } from "react";
+import type { Contributions as Data } from "../lib/github";
 import { person } from "../data/site";
 import { ArrowUpRight } from "./ui/Icons";
 
@@ -19,12 +22,13 @@ const MONTHS = [
 ];
 
 // One shade per GitHub level, from "nothing that day" to "a lot".
+// GitHub's own greens, light theme then dark theme.
 const SHADES = [
-  "bg-foreground/[0.07]",
-  "bg-foreground/25",
-  "bg-foreground/45",
-  "bg-foreground/70",
-  "bg-foreground",
+  "bg-[#ebedf0] dark:bg-[#161b22]",
+  "bg-[#9be9a8] dark:bg-[#0e4429]",
+  "bg-[#40c463] dark:bg-[#006d32]",
+  "bg-[#30a14e] dark:bg-[#26a641]",
+  "bg-[#216e39] dark:bg-[#39d353]",
 ];
 
 function weekday(date: string) {
@@ -37,10 +41,35 @@ function label(date: string) {
 }
 
 // The GitHub contribution grid for the last year: one column per week, one
-// square per day. Shows nothing if GitHub cannot be reached.
-export async function Contributions() {
-  const data = await getContributions(USER);
-  if (!data) return null;
+// square per day. Starts from the data saved at build time, then fetches
+// today's numbers in the browser so the grid never goes stale.
+export function ContributionGrid({ initial }: { initial: Data | null }) {
+  const [data, setData] = useState(initial);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`https://github-contributions-api.jogruber.de/v4/${USER}?y=last`)
+      .then((response) => (response.ok ? response.json() : null))
+      .then((json) => {
+        if (cancelled || !json?.contributions?.length) return;
+        setData({
+          total: json.total?.lastYear ?? 0,
+          days: json.contributions.map(
+            (day: { date: string; count: number; level: number }) => ({
+              date: day.date,
+              count: day.count,
+              level: day.level,
+            }),
+          ),
+        });
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (!data || data.days.length === 0) return null;
 
   // Empty squares before the first day, so each column starts on a Sunday.
   const lead = weekday(data.days[0].date);
