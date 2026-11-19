@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Contributions as Data } from "../lib/github";
 import { person } from "../data/site";
 import { ArrowUpRight } from "./ui/Icons";
@@ -45,6 +45,13 @@ function label(date: string) {
 // today's numbers in the browser so the grid never goes stale.
 export function ContributionGrid({ initial }: { initial: Data | null }) {
   const [data, setData] = useState(initial);
+  const scroller = useRef<HTMLDivElement>(null);
+
+  // On narrow screens the grid scrolls sideways; start at the latest weeks.
+  useEffect(() => {
+    const el = scroller.current;
+    if (el) el.scrollLeft = el.scrollWidth;
+  }, [data]);
 
   useEffect(() => {
     let cancelled = false;
@@ -108,44 +115,50 @@ export function ContributionGrid({ initial }: { initial: Data | null }) {
       </div>
 
       <div
-        role="img"
-        aria-label={`${data.total.toLocaleString("en-US")} GitHub contributions in the last year`}
-        className="mt-4 grid grid-flow-col gap-[2px] sm:gap-[3px]"
-        style={{
-          gridTemplateRows: "repeat(7, auto)",
-          gridTemplateColumns: `repeat(${weeks}, minmax(0, 1fr))`,
-        }}
+        ref={scroller}
+        className="mt-4 overflow-x-auto pb-1 [scrollbar-width:thin]"
       >
-        {Array.from({ length: lead }, (_, index) => (
-          <span key={`lead-${index}`} aria-hidden="true" />
-        ))}
-        {data.days.map((day) => (
-          <span
-            key={day.date}
-            title={`${day.count === 0 ? "No" : day.count} contribution${
-              day.count === 1 ? "" : "s"
-            } on ${label(day.date)}`}
-            className={`aspect-square rounded-[2px] sm:rounded-[3px] ${
-              SHADES[day.level] ?? SHADES[0]
-            }`}
-          />
-        ))}
-      </div>
-
-      <div
-        aria-hidden="true"
-        className="text-foreground/50 mt-2 grid gap-[2px] font-mono text-[11px] sm:gap-[3px]"
-        style={{ gridTemplateColumns: `repeat(${weeks}, minmax(0, 1fr))` }}
-      >
-        {months.map((month) => (
-          <span
-            key={`${month.name}-${month.column}`}
-            className="whitespace-nowrap"
-            style={{ gridColumnStart: month.column + 1 }}
+        <div className="w-max">
+          <div
+            role="img"
+            aria-label={`${data.total.toLocaleString("en-US")} GitHub contributions in the last year`}
+            className="grid grid-flow-col gap-[3px]"
+            style={{
+              gridTemplateRows: "repeat(7, 11px)",
+              gridTemplateColumns: `repeat(${weeks}, 11px)`,
+            }}
           >
-            {month.name}
-          </span>
-        ))}
+            {Array.from({ length: lead }, (_, index) => (
+              <span key={`lead-${index}`} aria-hidden="true" />
+            ))}
+            {data.days.map((day) => (
+              <span
+                key={day.date}
+                title={`${day.count === 0 ? "No" : day.count} contribution${
+                  day.count === 1 ? "" : "s"
+                } on ${label(day.date)}`}
+                className={`size-[11px] rounded-[2px] ${
+                  SHADES[day.level] ?? SHADES[0]
+                }`}
+              />
+            ))}
+          </div>
+
+          <div
+            aria-hidden="true"
+            className="text-foreground/50 relative mt-2 h-4 font-mono text-[11px]"
+          >
+            {months.map((month) => (
+              <span
+                key={`${month.name}-${month.column}`}
+                className="absolute whitespace-nowrap"
+                style={{ left: month.column * 14 }}
+              >
+                {month.name}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
