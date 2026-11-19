@@ -69,7 +69,7 @@ function Row({
         aria-expanded={open}
         aria-controls={`${id}-panel`}
         onClick={onToggle}
-        className="transition-colors duration-150 group -mx-2 flex w-[calc(100%+1rem)] cursor-pointer items-center gap-3 px-2 py-1.5 text-left"
+        className="transition-colors duration-150 group -mx-2 flex w-[calc(100%+1rem)] cursor-pointer items-start gap-3 px-2 md:items-center py-1.5 text-left"
       >
         {project.logo ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -78,19 +78,21 @@ function Row({
             alt=""
             width={32}
             height={32}
-            className={`bg-card ring-line size-5 shrink-0 rounded-[4px] ring-1 ${
+            className={`bg-card ring-line mt-0.5 size-5 shrink-0 md:mt-0 rounded-[4px] ring-1 ${
               project.logoPadded ? "object-contain p-[3px]" : "object-cover"
             }`}
           />
         ) : project.emoji ? (
           <span
             aria-hidden="true"
-            className="flex size-5 shrink-0 items-center justify-center text-base leading-none"
+            className="mt-0.5 flex size-5 shrink-0 items-center md:mt-0 justify-center text-base leading-none"
           >
             {project.emoji}
           </span>
         ) : (
-          <Box color={look.color}>{look.icon}</Box>
+          <span className="mt-0.5 shrink-0 md:mt-0">
+            <Box color={look.color}>{look.icon}</Box>
+          </span>
         )}
         <span className="flex min-w-0 flex-1 flex-col items-start gap-0.5 md:flex-row md:items-center md:gap-2.5">
           <span className="group-hover:text-primary shrink-0 font-semibold transition-colors duration-150">
@@ -102,12 +104,12 @@ function Row({
           >
             /
           </span>
-          <span className="text-foreground/70 group-hover:text-primary text-pretty transition-colors duration-150">
+          <span className="text-foreground/70 group-hover:text-primary text-sm text-pretty md:text-base transition-colors duration-150">
             {project.blurb}
           </span>
         </span>
         <ChevronDown
-          className={`group-hover:text-primary size-4 shrink-0 transition-[rotate,color,opacity] duration-200 ease-out group-hover:opacity-100 ${
+          className={`group-hover:text-primary mt-1 size-4 shrink-0 md:mt-0 transition-[rotate,color,opacity] duration-200 ease-out group-hover:opacity-100 ${
             open ? "text-primary rotate-180" : "text-foreground/40 opacity-0"
           }`}
         />
